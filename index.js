@@ -15,6 +15,12 @@ app.use(cors());
 const RABBITMQ_CONNECTION_STRING = process.env.RABBITMQ_CONNECTION_STRING || 'amqp://localhost';
 const PORT = process.env.PORT || 3000;
 
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'OK',
+    service: 'order-service'
+  });
+});
 // Define a POST route for creating orders
 // This route is accessed when a client (e.g., frontend) sends an order.
 app.post('/orders', (req, res) => {
